@@ -10,10 +10,11 @@ public class ArrayReversor {
 
 	public Integer[] reverseArray(Integer[][] arr) {
 
-		if (arr == null)
-			return null;
+		
 
 		Integer[] a = arrayFlattenerService.flattenArray(arr);
+		if (arr == null)
+			return null;
 
 		Integer[] newArray = new Integer[a.length];
 		

@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class ArrayReversoNullrTest {
@@ -31,7 +32,7 @@ public class ArrayReversoNullrTest {
 		Integer[] actual = arrayReversor.reverseArray(null);
 		Integer[] expected = null;
 		assertArrayEquals(expected, actual);
-
+		verify(arrayFlattenerService).flattenArray(null);
 	}
 
 }
