@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorate="~{layouts/master-layout}">
+<head>
+    <title>The ergistrar - a Spring Security Demo webapp - Services</title>
+</head>
+<body>
+    <div layout:fragment="content" style="padding-top:1em;" class="container">
+        <h3>eRgistrar<sup>&reg;</sup> Services</h3>
+        <hr/>
+        <div style="font-size: 1em">
+            <p>Select the service you want from the option(s) presented below.</p>
+            <br/>
+            <div class="row">
+                <div sec:authorize="hasRole('ROLE_STUDENT')" class="col-md-4">
+                    <div style="font-size: 1em;">
+                        <div class="card border-primary mb-3" style="max-width: 20rem;">
+                            <a style="text-decoration: inherit;" href="/eregistrar/secured/student/list">
+                                <div style="color: #1a1a1a;" class="card-header">Student</div>
+                                <div class="card-body">
+                                    <h4 class="card-title">List of Student</h4>
+                                    <p class="card-text">
+                                     Browse list of students
+                                        <br/><br/>
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div sec:authorize="hasRole('ROLE_REGISTRAR')" class="col-md-4">
+                    <div style="font-size: 1em;">
+                        <div class="card border-primary mb-3" style="max-width: 20rem;">
+                            <a style="text-decoration: inherit;" href="/eregistrar/registrar/student/list">
+                                <div style="color: #1a1a1a;" class="card-header">System Registration</div>
+                                <div class="card-body">
+                                    <h4 class="card-title">Registrar Tools</h4>
+                                    <p class="card-text">
+                                        Perform a registration students.
+                                        Or view students.
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div sec:authorize="hasRole('ROLE_ADMIN')" class="col-md-4">
+                    <div style="font-size: 1em;">
+                        <div class="card border-primary mb-3" style="max-width: 20rem;">
+                            <div class="card-header">System Administration</div>
+                            <div class="card-body">
+                                <h4 class="card-title">Admin Tools</h4>
+                                <p class="card-text">
+                                    <a href="/eregistrar/secured/admin/list">
+                                        Edit Students or Delete Students
+                                    </a>
+                                </p>
+                            </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <th:block layout:fragment="footer"></th:block>
+
+</body>
+</html>

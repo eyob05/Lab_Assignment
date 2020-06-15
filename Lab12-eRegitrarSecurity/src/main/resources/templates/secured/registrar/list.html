@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorate="~{layouts/master-layout}">
+<head>
+    <title>The eRegistrar - a Spring Security Demo webapp - Users Management</title>
+</head>
+<body>
+<div layout:fragment="content" style="padding-top:1em;" class="container">
+    <div style="margin-top: 1em; margin-bottom: 1em;" class="container">
+        <div>
+			<span style="font-size: 2em; color: #32a5e7;">Students in our
+				Data</span> <span style="float: right;"> <a
+                class="btn btn-outline-success btn-lg"
+                href="/eregistrar/registrar/student/new">Add a new student</a>
+			</span>
+        </div>
+        <!-- Search panel -->
+        <form id="searchStudentForm" method="get"
+              action="/eregistrar/student/search">
+            <div style="margin-top: 1em;" class="row">
+                <div class="col-md-12">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="searchString"
+                               name="searchString"
+                               placeholder="Enter a string to search for students"
+                               th:value="${searchString}" autofocus/>
+                        <div class="input-group-append">
+                            <button id="btnSubmit" type="submit"
+                                    class="btn btn-outline-success">Search
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div style="font-size: 1em">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Student Number</th>
+                    <th scope="col">FirstName</th>
+                    <th scope="col">MiddleName</th>
+                    <th scope="col">LastName</th>
+                    <th scope="col">CGPA</th>
+                    <th scope="col">Is International</th>
+                    <th scope="col">Date Enrollment</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="student,iterStat : ${students}">
+                    <th scope="row" th:text="${iterStat.count}+${'.'}"></th>
+                    <td th:text="${student.getStudentNumber()}"></td>
+                    <td th:text="${student.getFirstName()}"></td>
+                    <td th:text="${student.getMiddleName()}"></td>
+                    <td th:text="${student.getLastName()}"></td>
+                    <td th:text="${student.cgpa}"></td>
+                    <td th:text="${student.isInternational}"></td>
+                    <td th:text="${student.getEnrollmentDate()}"></td>
+
+                </tr>
+                <tr th:if="${studentsCount < 1}">
+                    <td colspan="8" th:align="center">No student found</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
